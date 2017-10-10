@@ -12,7 +12,7 @@ Optional Variables:
 
   backends:         an array of backends to load. Each backend must exist
                     by name in the directory backends/. If not specified,
-                    the default graphite backend will be loaded. 
+                    the default graphite backend will be loaded.
                     * example for console and graphite:
                     [ "./backends/console", "./backends/graphite" ]
   server:           the server to load. The server must exist by name in the directory
@@ -109,7 +109,11 @@ Optional Variables:
         dumpMessages: process.env.STATSD_DUMP_MSG == "true",
         debug: process.env.STATSD_DEBUG == "true",
         flushInterval: parseInt(process.env.STATSD_FLUSH_INTERVAL),
-
+        backends: ["./backends/repeater", "./backends/console"],
+        repeater: [{
+            "host": "relay.default",
+            "port": 6126
+        }],
         graphite: {
             globalPrefix: process.env.GRAPHITE_GLOBAL_PREFIX,
             legacyNamespace: process.env.GRAPHITE_LEGACY_NAMESPACE == 'true'
